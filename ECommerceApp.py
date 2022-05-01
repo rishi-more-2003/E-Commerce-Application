@@ -54,19 +54,19 @@ class CompanyLogin:
         self.usernameentry.focus()
         self.usernameentry.grid(row=1,column=1,columnspan=2,padx=5,pady=5)
         
-        self.passwordlabel=Label(text="Company Pass")
+        self.passwordlabel=Label(text="Company Key")
         self.passwordlabel.grid(row=2,column=0,padx=5,pady=5)
         
         self.passwordentry=Entry(width=30)
         self.passwordentry.grid(row=2,column=1,columnspan=2,padx=5,pady=5)
         
-        self.loginbutton=Button(text="Login",width=10,command=self.login)
+        self.loginbutton=Button(text="Login",width=12,command=self.login)
         self.loginbutton.grid(row=3,column=0,padx=5,pady=5)
         
-        self.signupbutton=Button(text="Add Company",width=10,command=self.addcompany)
+        self.signupbutton=Button(text="Add Company",width=12,command=self.addcompany)
         self.signupbutton.grid(row=3,column=1,padx=5,pady=5)
         
-        self.backbutton=Button(text="Back",width=10,command=self.back)
+        self.backbutton=Button(text="Back",width=12,command=self.back)
         self.backbutton.grid(row=3,column=2,padx=5,pady=5)
         
         self.window.mainloop()
@@ -223,10 +223,10 @@ class CompanyViewItems():
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
-        self.checkitemsbutton=Button(text="Check Items",command=self.viewitems)
+        self.checkitemsbutton=Button(text="Check Items",width=10,command=self.viewitems)
         self.checkitemsbutton.grid(row=1,column=0)
         
-        self.backbutton=Button(text="Back",command=self.back)
+        self.backbutton=Button(text="Back",width=10,command=self.back)
         self.backbutton.grid(row=1,column=2)
         
         self.itemslistbox=Listbox(width=50,height=10)
@@ -244,7 +244,7 @@ class CompanyViewItems():
         if itemslist!=[]:
             for x in itemslist:
                 i=i+1
-                self.itemslistbox.insert(i,str("Item No: "+str(x[0])+" Item Name: "+str(x[3])+ " Price: "+str(x[1])))
+                self.itemslistbox.insert(i,str("Item No: "+str(i)+" Item Name: "+str(x[3])+ " Price: "+str(x[1])))
         else:
             self.itemslistbox.insert(0,"No Items Found!")
             
