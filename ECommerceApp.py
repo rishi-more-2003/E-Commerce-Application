@@ -1,4 +1,3 @@
-from ctypes import alignment
 import mysql.connector
 from tkinter import *
 from tkinter import messagebox
@@ -12,7 +11,7 @@ class MainWindow:
         self.window.config(padx=50,pady=50)
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="shoppingcart.logo.png")
+        logo_img = PhotoImage(file="Logos/shoppingcart.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
@@ -44,7 +43,7 @@ class CompanyLogin:
         self.window.config(padx=50,pady=50)
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="company.logo.png")
+        logo_img = PhotoImage(file="Logos/company.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
@@ -103,7 +102,7 @@ class CompanyLogin:
         self.window.config(padx=50,pady=50)
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="company.logo.png")
+        logo_img = PhotoImage(file="Logos/company.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
@@ -172,7 +171,7 @@ class CompanyWindow:
         self.window.config(padx=50,pady=50)
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="company.window.logo.png")
+        logo_img = PhotoImage(file="Logos/company.window.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
@@ -212,7 +211,7 @@ class CompanyAddItems:
         self.window.config(padx=50,pady=50)
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="company.additem.logo.png")
+        logo_img = PhotoImage(file="Logos/company.additem.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
@@ -279,7 +278,7 @@ class CompanyViewItems():
         self.cid=cid
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="company.viewitems.logo.png")
+        logo_img = PhotoImage(file="Logos/company.viewitems.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
@@ -321,7 +320,7 @@ class AddCompany:
         self.window.config(padx=50,pady=50)
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="newcompany.logo.png")
+        logo_img = PhotoImage(file="Logos/newcompany.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
@@ -384,7 +383,7 @@ class CustomerLogin:
         self.window.config(padx=50,pady=50)
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="customer.logo.png")
+        logo_img = PhotoImage(file="Logos/customer.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
@@ -453,7 +452,7 @@ class CustomerWindow:
         self.cid=cid
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="customerdetails.logo.png")
+        logo_img = PhotoImage(file="Logos/customerdetails.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
@@ -499,7 +498,7 @@ class OrderItems():
         self.window.config(padx=50,pady=50)
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="createorder.logo.png")
+        logo_img = PhotoImage(file="Logos/createorder.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=4)
         
@@ -629,7 +628,7 @@ class OrderHistory:
         self.cid=cid
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="previousorders.logo.png")
+        logo_img = PhotoImage(file="Logos/previousorders.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
@@ -670,7 +669,7 @@ class SignUp:#Customer Sign Up
         self.window.config(padx=50,pady=50)
         
         self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="signup.logo.png")
+        logo_img = PhotoImage(file="Logos/signup.logo.png")
         self.canvas.create_image(100, 100, image=logo_img)
         self.canvas.grid(column=0, row=0, columnspan=3)
         
