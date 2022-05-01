@@ -584,19 +584,19 @@ class OrderItems():
         addcursor.execute("SELECT * FROM items WHERE it_name=%s",(itemname,))
         item=addcursor.fetchone()
         itname=item[3]
-        f=1
+        flag=1
         for x in self.displaybasket:
             if x[0]==itname:
                 pos=self.displaybasket.index(x)
-                f=0
+                flag=0
         if itemname!="":
                 if quantity!="0":
                     if item!=None:
                         itid=item[0]
-                        self.itemsarray.append([int(self.orderid),int(itid),int(quantity)])
-                        if f==1:
+                        if flag==1:
                             self.displaybasket.append([itemname,quantity])
                             self.basketlistbox.insert(self.itemcount,str("Item Name: "+itemname+" Quantity: "+quantity))
+                            self.itemsarray.append([int(self.orderid),int(itid),int(quantity)])
                         else:
                             u=self.basketlistbox.get(pos)
                             x=u.find("Quantity: ")
@@ -605,6 +605,7 @@ class OrderItems():
                             self.displaybasket[pos]=[itemname,q2]
                             self.basketlistbox.delete(pos)   
                             self.basketlistbox.insert(pos,str("Item Name: "+itemname+" Quantity: "+str(q2)))
+                            self.itemsarray[pos]=[int(self.orderid),int(itid),int(q2)]
                         self.itemcount=self.itemcount+1
                         self.amount=self.amount+int(quantity)*int(item[1])
                         self.totalamount.config(text=str(self.amount))                         
@@ -616,7 +617,12 @@ class OrderItems():
             messagebox.showinfo(title="Oops", message="Itemname cannot be empty")
             
     def removeitem(self):
-        pass
+        if self.basketlistbox!=():
+            a=self.basketlistbox.size()
+            a=a-1
+            self.basketlistbox.delete(a)
+            self.displaybasket.pop(a)
+            self.itemsarray.pop(a)
             
     def orderbasket(self):
         orderbasket=mydb.cursor()
