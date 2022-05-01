@@ -563,7 +563,12 @@ class OrderItems():
             a=a-1
             self.basketlistbox.delete(a)
             self.displaybasket.pop(a)
-            self.itemsarray.pop(a)
+            deleteditem=self.itemsarray.pop(a)
+            deletecursor=mydb.cursor()
+            deletecursor.execute("SELECT price FROM items WHERE itid=%s",(deleteditem[1],))
+            deleteditemprice=deletecursor.fetchone()
+            self.amount=self.amount-int(deleteditem[2])*int(deleteditemprice[0])
+            self.totalamount.config(text=str(self.amount))
             
     def orderbasket(self):
         orderbasket=mydb.cursor()
