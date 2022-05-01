@@ -538,13 +538,16 @@ class OrderItems():
         self.basketlistbox=Listbox(width=50,height=5)
         self.basketlistbox.grid(row=5,column=0,columnspan=4,padx=5,pady=5)
       
-        self.itemadd=Button(text="Add Item",width=20,command=self.additem)
+        self.itemadd=Button(text="Add Item",width=12,command=self.additem)
         self.itemadd.grid(row=6,column=0,padx=5,pady=5)
         
-        self.order=Button(text="Order",width=20,command=self.orderbasket)
-        self.order.grid(row=6,column=1,columnspan=2,padx=5,pady=5)
+        self.remove=Button(text="Remove Item",width=12,command=self.removeitem)
+        self.remove.grid(row=6,column=1,padx=5,pady=5)
         
-        self.backbutton=Button(text="Back",width=20,command=self.back)
+        self.order=Button(text="Order",width=12,command=self.orderbasket)
+        self.order.grid(row=6,column=2,padx=5,pady=5)
+             
+        self.backbutton=Button(text="Back",width=12,command=self.back)
         self.backbutton.grid(row=6,column=3,padx=5,pady=5)        
         
         self.window.mainloop()
@@ -580,22 +583,39 @@ class OrderItems():
         addcursor=mydb.cursor()
         addcursor.execute("SELECT * FROM items WHERE it_name=%s",(itemname,))
         item=addcursor.fetchone()
+        itname=item[3]
+        f=1
+        for x in self.displaybasket:
+            if x[0]==itname:
+                pos=self.displaybasket.index(x)
+                f=0
         if itemname!="":
                 if quantity!="0":
                     if item!=None:
                         itid=item[0]
                         self.itemsarray.append([int(self.orderid),int(itid),int(quantity)])
                         self.displaybasket.append([itemname,quantity])
-                        self.basketlistbox.insert(self.itemcount,str("Item Name: "+itemname+"\n Quantity: "+quantity))
+                        if f==1:
+                            self.basketlistbox.insert(self.itemcount,str("Item Name: "+itemname+"\n Quantity: "+quantity))
+                        else:
+                            u=self.basketlistbox.get(pos)
+                            x=u.find("Quantity:")
+                            q=u[x+10:]
+                            q2=int(q)+int(quantity)
+                            self.basketlistbox.delete(pos)   
+                            self.basketlistbox.insert(pos,str("Item Name: "+itemname+"\n Quantity: "+str(q2)))
                         self.itemcount=self.itemcount+1
                         self.amount=self.amount+int(quantity)*int(item[1])
-                        self.totalamount.config(text=str(self.amount))
+                        self.totalamount.config(text=str(self.amount))                         
                     else:
                         messagebox.showinfo(title="Oops",message="Item not found!")
                 else:
                     messagebox.showinfo(title="Oops",message="Please enter a valid quantity!")
         else:
             messagebox.showinfo(title="Oops", message="Itemname cannot be empty")
+            
+    def removeitem(self):
+        pass
             
     def orderbasket(self):
         orderbasket=mydb.cursor()
