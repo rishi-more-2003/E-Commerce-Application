@@ -594,16 +594,17 @@ class OrderItems():
                     if item!=None:
                         itid=item[0]
                         self.itemsarray.append([int(self.orderid),int(itid),int(quantity)])
-                        self.displaybasket.append([itemname,quantity])
                         if f==1:
-                            self.basketlistbox.insert(self.itemcount,str("Item Name: "+itemname+"\n Quantity: "+quantity))
+                            self.displaybasket.append([itemname,quantity])
+                            self.basketlistbox.insert(self.itemcount,str("Item Name: "+itemname+" Quantity: "+quantity))
                         else:
                             u=self.basketlistbox.get(pos)
-                            x=u.find("Quantity:")
+                            x=u.find("Quantity: ")
                             q=u[x+10:]
                             q2=int(q)+int(quantity)
+                            self.displaybasket[pos]=[itemname,q2]
                             self.basketlistbox.delete(pos)   
-                            self.basketlistbox.insert(pos,str("Item Name: "+itemname+"\n Quantity: "+str(q2)))
+                            self.basketlistbox.insert(pos,str("Item Name: "+itemname+" Quantity: "+str(q2)))
                         self.itemcount=self.itemcount+1
                         self.amount=self.amount+int(quantity)*int(item[1])
                         self.totalamount.config(text=str(self.amount))                         
