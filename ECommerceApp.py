@@ -34,65 +34,6 @@ class MainWindow:
         self.window.destroy()
         CompanyLogin()
 
-#---------------------------------------------Company Login---------------------------------------------#
-       
-class CompanyLogin:
-    def __init__(self):
-        self.window=Tk()
-        self.window.title("Company Login")
-        self.window.config(padx=50,pady=50)
-        
-        self.canvas = Canvas(width=200, height=200)
-        logo_img = PhotoImage(file="Logos/company.logo.png")
-        self.canvas.create_image(100, 100, image=logo_img)
-        self.canvas.grid(column=0, row=0, columnspan=3)
-        
-        self.compnamelabel=Label(text="Company Name")
-        self.compnamelabel.grid(row=1,column=0,padx=5,pady=5)
-        
-        self.compnameentry=Entry(width=30)
-        self.compnameentry.focus()
-        self.compnameentry.grid(row=1,column=1,columnspan=2,padx=5,pady=5)
-        
-        self.cpasslabel=Label(text="Password")
-        self.cpasslabel.grid(row=2,column=0,padx=5,pady=5)
-        
-        self.cpassentry=Entry(width=30)
-        self.cpassentry.grid(row=2,column=1,columnspan=2,padx=5,pady=5)
-        
-        self.loginbutton=Button(text="Login",width=10,command=self.login)
-        self.loginbutton.grid(row=3,column=0,padx=5,pady=5)
-        
-        self.backbutton=Button(text="Back",width=10,command=self.back)
-        self.backbutton.grid(row=3,column=2,padx=5,pady=5)
-        
-        self.window.mainloop()
-        
-    def login(self):#Read from Company table
-        username=self.compnameentry.get()
-        password=self.cpassentry.get()
-        logincursor=mydb.cursor()
-        logincursor.execute("SELECT * FROM company")
-        
-        companydata=logincursor.fetchall()
-        for row in companydata:
-            if row[1]==username:
-                if row[2]==password:
-                    #CompanyWindow(username)
-                    #print("Successfill Login")
-                    break
-                else:
-                    messagebox.showinfo(title="Oops", message="Incorrect Company Password!")
-                    break
-            else:
-                continue
-        if row[1]!=username:
-            messagebox.showinfo(title="Oops", message="Incorrect Company Name!")
-    
-    def back(self):
-        self.window.destroy()
-        MainWindow()
-
 #---------------------------------------------Company Login---------------------------------------------# 
        
 class CompanyLogin:
