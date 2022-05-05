@@ -524,16 +524,17 @@ class OrderItems():
         addcursor=mydb.cursor()
         addcursor.execute("SELECT * FROM items WHERE it_name=%s",(itemname,))
         item=addcursor.fetchone()
-        itname=item[3]
         flag=1
-        for x in self.displaybasket:
-            if x[0]==itname:
-                pos=self.displaybasket.index(x)
-                flag=0
+        if item!=None:
+            itid=item[0]
+            itname=item[3]
+            for x in self.displaybasket:
+                if x[0]==itname:
+                    pos=self.displaybasket.index(x)
+                    flag=0
         if itemname!="":
                 if quantity!="0":
                     if item!=None:
-                        itid=item[0]
                         if flag==1:
                             self.displaybasket.append([itemname,quantity])
                             self.basketlistbox.insert(self.itemcount,str("Item Name: "+itemname+" Quantity: "+quantity))
