@@ -525,7 +525,7 @@ class OrderItems():
         addcursor.execute("SELECT * FROM items WHERE it_name=%s",(itemname,))
         item=addcursor.fetchone()
         flag=1
-        if item!=None:
+        if item is not None:
             itid=item[0]
             itname=item[3]
             for x in self.displaybasket:
@@ -534,7 +534,7 @@ class OrderItems():
                     flag=0
         if itemname!="":
                 if quantity!="0":
-                    if item!=None:
+                    if item is not None:
                         if flag==1:
                             self.displaybasket.append([itemname,quantity])
                             self.basketlistbox.insert(self.itemcount,str("Item Name: "+itemname+" Quantity: "+quantity))
