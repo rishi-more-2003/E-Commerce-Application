@@ -180,7 +180,10 @@ class CompanyAddItems:
         findlast=mydb.cursor()
         findlast.execute("SELECT MAX(itid) FROM items")
         itid=findlast.fetchone()
-        self.itemid=int(itid[0])+1
+        if itid[0] is None:
+            self.itemid=1
+        else:
+            self.itemid=int(itid[0])+1
         
     def additems(self):
         self.findlastids()
@@ -291,15 +294,16 @@ class AddCompany:
         
         signupcursor=mydb.cursor()
         signupcursor.execute("SELECT * FROM company")
-        
         companydata=signupcursor.fetchall()
         f=0
+        lid=0
         for row in companydata:
             if row[1]==name:
                 messagebox.showinfo(title="Oops", message="Company already present!")
                 f=1
-            lid=row[0]
-        lid=lid+1       
+            if row[0] > lid:
+                lid = row[0]
+        lid = lid + 1
         if f==0:
             if name!="" and password!="":        
                 try:
@@ -497,7 +501,10 @@ class OrderItems():
         findlast=mydb.cursor()
         findlast.execute("SELECT MAX(o_no) FROM orders")
         orno=findlast.fetchone()
-        self.orderid=int(orno[0])+1
+        if orno[0] is None:
+            self.orderid=1
+        else:
+            self.orderid=int(orno[0])+1
              
     def checkproducts(self):
         company=self.compentry.get()
@@ -701,15 +708,17 @@ class SignUp:#Customer Sign Up
         
         signupcursor=mydb.cursor()
         signupcursor.execute("SELECT * FROM customer")
-        
+
         customerdata=signupcursor.fetchall()
         f=0
+        lid=0
         for row in customerdata:
             if row[1]==name:
                 messagebox.showinfo(title="Oops", message="Customer already present!")
                 f=1
-            lid=row[0]
-        lid=lid+1       
+            if row[0] > lid:
+                lid = row[0]
+        lid = lid + 1
         if f==0:
             if name!="" and address!="" and email!="" and cardnumber!="" and phonenumber!="" and password!="":        
                 try:
